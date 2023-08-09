@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  min-height: 100vh;
+}
+.imgnav{
+  width: 15vw;
+}
+.navletra{
+  font-size: 1.2vw;
+}
+.bgnav{
+  background-color: #002557;
+}
+.activo{
+  color: #00D8F6;
+}
+a:hover{
+  color: #00D8F6!important;
+}
+footer{
+  background-color: #002557;
+  margin-top: auto;
+}
+.logofooter{
+  width: 10vw;
+}
+footer{
+  min-height: 8rem;
+}
+.logoredes{
+  width: 2.5rem;
+}

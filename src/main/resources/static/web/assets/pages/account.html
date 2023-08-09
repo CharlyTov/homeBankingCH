@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/account.css">
+    <link rel="shortcut icon" href="../images/faviconnb.png" type="image/x-icon">
+    <title>My Accounts</title>
+</head>
+<body class="d-flex flex-column">
+    <header>
+        <nav class="navbar navbar-expand-lg bgnav">
+            <div class="container-fluid">
+                <div>
+                    <img class="imgnav" src="../images/logolarge.png" alt="" href="#">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+              <div class="collapse navbar-collapse flex-row-reverse me-5" id="navbarNavAltMarkup">
+                <div class="navbar-nav navletra">
+                  <a class="nav-link ms-3 activo"  href="#">ACCOUNTS</a>
+                  <a class="nav-link text-white ms-5" href="#">CARDS</a>
+                  <a class="nav-link text-white ms-5" href="#">LOANS</a>
+                  <a class="nav-link text-white ms-5" href="#">TRANSACTIONS</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+    
+    <main id="app" class="mt-5">
+        <div class="text-center mt-3">
+            <h1 id="mainTitle" class="text-center m-1 text-dark">MY ACCOUNTS</h1>
+            <p class="text-center m-3 text-dark">Hello {{clientName}}, please select an account to see the information</p>
+        </div>
+        <div class="text-center">
+            <div id="accountMainContainer mt-3" class="d-flex flex-column align-items-center">
+                <select id="selectAccountBar" v-model="selectedAccount">
+                    <option value="">Select Account</option>
+                    <option value="accountOne">{{accountOne.number}}</option>
+                    <option value="accountTwo">{{accountTwo.number}}</option>
+                </select>
+                <section id="accountInfo" class="d-flex text-center p-2 gap-1 m-2 mt-5 justify-content-center">
+                    <template v-if="selectedAccount == 'accountOne'">
+                        <div class="accountContainer text-dark p-1 mt-3">
+                            <h5>Balance</h5>
+                            <p>$ {{accountOne.balance}}</p>
+                            <h5>Account creation date</h5>
+                            <p>{{accountOne.creationDate}}</p>
+                        </div>
+                    </template>
+                    <template v-else-if="selectedAccount == 'accountTwo'">
+                        <div class="accountContainer text-dark p-1 mt-3">
+                            <h5>Balance</h5>
+                            <p>$ {{accountTwo.balance}}</p>
+                            <h5>Account creation date</h5>
+                            <p>{{accountTwo.creationDate}}</p>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <p id="selectAccountMsg" class="text-dark p-2">Select an Account</p>
+                    </template>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer class="text-light d-flex justify-content-around align-items-center">
+        <section class="text-center">
+            <h2>Classy Bank</h2>
+            <p>Your time is the true value</p>
+        </section>
+        <div id="network" class="text-center">
+            <h5>Follow Us:</h5>
+            <a href="https://web.whatsapp.com/"><img src="../images/whatsapp.png" alt="whatsapp" title="Whatsapp"
+                    class="logoredes"></a>
+            <a href="https://www.instagram.com/"><img src="../images/instagram.png" alt="instagram"
+                    title="Instagram" class="logoredes"></a>
+            <a href="https://es-la.facebook.com/"><img src="../images/facebook.png" alt="facebook" title="Facebook"
+                    class="logoredes"></a>
+        </div>
+        <div>
+            <img class="logofooter" src="../images/logoslogan .png" alt="">
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/account.js"></script>
+</body>
+
+</html>

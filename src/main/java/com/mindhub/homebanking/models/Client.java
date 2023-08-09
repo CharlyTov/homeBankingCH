@@ -1,12 +1,11 @@
 package com.mindhub.homebanking.models;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.boot.CommandLineRunner;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity //genera una tabla en la base de datos, filas = objetos y columnas = propiedades
 public class Client {
@@ -14,20 +13,30 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
-    private String firstName ="";
-    private String lastName = "";
+    private String firstName;
+    private String lastName;
+    private String email;
 
-    private String email = "";
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private Set<Account> accounts = new HashSet<>();
 
-    public Client() { }
-
-    public Client(String first, String last,String email) {
-        this.firstName = first;
-        this.lastName = last;
-        this.email = email;
+    // métodos constructores
+    public Client() {
     }
 
-    public long getId() { return id; }
+    public Client(String first, String last) {
+        firstName = first;
+        lastName = last;
+    }
+
+    public Client(String first, String last, String mail) {
+        firstName = first;
+        lastName = last;
+        email = mail;
+    }
+
+    // métodos accesores
+
 
     public String getFirstName() {
         return firstName;
@@ -53,8 +62,28 @@ public class Client {
         this.email = email;
     }
 
+    public long getId() {
+        return id;
+    }
+
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public void addAccount(Account account) {
+        account.setOwner(this);
+        accounts.add(account);
+    }
+
+    // métodos impresores
+    @Override
     public String toString() {
-        return firstName + " " + lastName + " " + email;
+        return firstName + " " + lastName + " " + email + " " + id;
     }
 
 }
